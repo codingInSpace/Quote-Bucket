@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.parse.Parse;
+import com.parse.ParseObject;
+
 public class MainActivity extends Activity {
 
     @Override
@@ -17,6 +20,16 @@ public class MainActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        // Enable Local Datastore.
+        Parse.enableLocalDatastore(this);
+
+        Parse.initialize(this, "Xaf5sSdFY5PD6FveVghkOnwxiYzMvl4KsrOPm1nn", "F4ZxDsSI9PQ5kpnPQ6pqzYTwXM7lyGUHLuaMjOoc");
+
+        ParseObject testObject = new ParseObject("TestObject");
+        testObject.put("foo", "bar");
+        testObject.saveInBackground();
+
         return true;
     }
 
